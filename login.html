@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登陆界面-大事件</title>
+    <!-- 引入layui样式 -->
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <!-- 引入自己的样式 -->
     <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 
 <body>
+    <!-- 头部logo区域 -->
+    <div class="layui-main" style="margin-top: 30px;">
+        <img src="./assets/images/logo.png" alt="">
+    </div>
 
+    <!-- 登陆注册区域 -->
+    <div class="loginAndRegBox">
+        <div class="title-box"></div>
+
+        <!-- 登陆模块 -->
+        <div class="login-box">
+            <a href="javascript:;" id="link_reg">去注册</a>
+        </div>
+
+        <!-- 注册模快 -->
+        <div class="reg-box" style="display: none;">
+            <a href="javascript:;" id="link_login">去登陆</a>
+        </div>
+    </div>
+
+    <script src="/assets/lib/jquery.js"></script>
+    <script src="/assets/js/login.js"></script>
 </body>
 
 </html>
