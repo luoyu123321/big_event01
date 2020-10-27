@@ -22,22 +22,47 @@ $(function() {
             }
         }
     })
+    var layer = layui.layer
 
     $('#form-reg').on('submit', function(e) {
         e.preventDefault()
         $.ajax({
             type: 'POST',
-            url: 'http://ajax.frontend.itheima.net/api/reguser',
+            url: '/api/reguser',
             data: {
                 username: $('.reg-box input[name=username]').val(),
                 password: $('.reg-box input[name=password]').val()
             },
             success: function(res) {
                 if (res.status !== 0) {
-                    alert(res.message)
+                    // alert(res.message)
+                    layer.msg(res.message)
                 }
-                alert(res.message)
+                // alert(res.message)
+                layer.msg('注册成功,请登录!!')
+                $('#link_login').click()
+                $('#form-reg')[0].reset()
             }
         })
     })
+
+    $('#form-login').on('submit', function(e) {
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: '/api/login',
+            data: $(this).serialize(),
+            success: function(res) {
+                if (res.status !== 0) return layer.msg(res.message)
+                layer.msg('登录成功!')
+                    // 保存token值到本地
+                localStorage.setItem('token', res.token)
+                    // 跳转
+                location.href = "/index.html"
+            }
+        })
+    })
+
+
+
 })
