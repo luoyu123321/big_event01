@@ -11,5 +11,14 @@ var baseUrl = 'http://ajax.frontend.itheima.net'
 // 只有这个方法执行完毕,ajax才会真正发送
 
 $.ajaxPrefilter(function(options) {
+
     options.url = baseUrl + options.url
+
+    // 对需要权限的接口配置头信息
+    // 必须以my开头才行
+    if (options.url.indexOf("/my/") !== -1) {
+        options.headers = {
+            Authorization: localStorage.getItem('token') || ''
+        }
+    }
 });
