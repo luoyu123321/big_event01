@@ -1,5 +1,16 @@
 $(function() {
     getUserInfo()
+
+    $('#btnLoginout').on('click', function() {
+        layer.confirm('是否确认退出?', { icon: 3, title: '提示' }, function(index) {
+            //删除本地token
+            localStorage.removeItem('token')
+                //跳转页面
+            location.href = '/login.html'
+                //关闭弹框
+            layer.close(index);
+        });
+    })
 })
 
 function getUserInfo() {

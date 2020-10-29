@@ -21,4 +21,14 @@ $.ajaxPrefilter(function(options) {
             Authorization: localStorage.getItem('token') || ''
         }
     }
+
+    options.complete = function(res) {
+        if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
+            //清空本地token
+            localStorage.removeItem('token')
+                //跳转登录页
+            location.href = '/login.html'
+
+        }
+    }
 });
